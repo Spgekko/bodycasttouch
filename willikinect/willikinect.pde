@@ -51,15 +51,15 @@ void draw() {
   getKinectFrame(); //call the getKinectFrame function
 }
 
-//
+//this function is called by the processing framework every time a key is pressed
 void keyPressed() {
-  if (key == 108) {
-    figure1LeftHandLogging = !figure1LeftHandLogging;
+  if (key == 108) { // if the key is 'l'
+    figure1LeftHandLogging = !figure1LeftHandLogging; // toggle figure 1 left hand logging so you can set hotspots
   } 
 }
 
 void initializeHotspots() {
-  activeHotspots = new boolean[6][2][hotspotDefinitions.size()]; //set the size of the active hotspots array
+  activeHotspots = new boolean[6][2][hotspotDefinitions.size()]; //set the size of the active hotspots array -- first dimension is number of kinect figures, second is 2 hands, 3rd is number of hotspots
   for (int i=0;i<6;i++) {
     for (int j=0;j<2;j++) {
         for (int k=0;k<hotspotDefinitions.size();k++) {
@@ -97,7 +97,6 @@ void checkHotspots(int whichFigure, int whichHand, float x, float y, float z) {
     float deltaZ = z - hotspot.getFloat("z"); //get this hotspot's z position
     double d = Math.sqrt(Math.pow(deltaX,2)+Math.pow(deltaY,2)+Math.pow(deltaZ,2)); //calculate the 3D distance between the current hand tip and this hotspot
     if ((float) d < hotspot.getFloat("threshold")) { //if the distance is within this hotspot's threshold
-      //println("in delta: "+d);
       isIn = true; //we're in
       if (activeHotspots[whichFigure][whichHand][i] != isIn) { //only when the state changed since the last frame
           activeHotspots[whichFigure][whichHand][i] = true; //match the hotspot state with the change
@@ -107,7 +106,6 @@ void checkHotspots(int whichFigure, int whichHand, float x, float y, float z) {
       }
     } else {
       isIn = false;
-      //println("out delta: "+d);
       if (activeHotspots[whichFigure][whichHand][i] != isIn) { //only when the state changed since the last frame
           activeHotspots[whichFigure][whichHand][i] = false; //match the hotspot state with the change
           String outCommand = hotspot.getString("outcommand");
