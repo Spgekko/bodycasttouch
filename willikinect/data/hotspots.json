@@ -1,0 +1,20 @@
+[
+	{
+	  name: "Hotspot 1",
+		x:-0.04407803,
+		y:-0.1816223,
+		z:1.2029403,
+		threshold: 0.15,
+		incommand: "run \"Timeline 1\"",
+		outcommand: ""
+	},
+	{
+	  name: "Hotspot 2",
+		x:-0.20099123,
+		y:-0.17343502,
+		z:0.9898231,
+		threshold: 0.15,
+		incommand: "run \"Timeline 2\"",
+		outcommand: ""
+	}
+]
